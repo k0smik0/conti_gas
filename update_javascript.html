@@ -1,0 +1,28 @@
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+  function updateViaGAS() {
+    google.script.run.withSuccessHandler(updateSuccess)
+        .withFailureHandler(updateError)
+        .updateFromParse();
+  }
+  
+  function updateSuccess(results) {
+//    $('#output').html("updated: "+results.length);
+    document.getElementById('output').innerHTML = "updated: "+results.length;
+  }
+  function updateError() {
+//    $('#output').html("update error");
+    document.getElementById('output').innerHTML = "update error";
+  }
+  
+  // onload
+  $(function() {
+    console.log("update onload");
+    updateViaGAS();
+  });
+  window.document.onload = function(e){
+      console.log("update onload");
+    updateViaGAS();  
+  };
+</script>
